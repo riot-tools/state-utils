@@ -3,8 +3,8 @@ name: Test
 on:
   push:
     branches:
-      - '/refs/master/*'
-      - '!master'
+      - '/refs/main/*'
+      - '!main'
       - '!next'
 
   pull_request:
