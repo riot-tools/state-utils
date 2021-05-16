@@ -8,8 +8,6 @@ on:
 
   workflow_dispatch:
 
-
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,8 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - uses: bahmutov/npm-install@v1
-      - run: npx npm-install-peers
-      - run: npm run rollup
       - run: npm run test
 
   release:
@@ -29,9 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: bahmutov/npm-install@v1
-      - run: npx npm-install-peers
-      - run: npm run rollup
-      - run: npm run types
+      - run: npm run build
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
