@@ -10,10 +10,17 @@ export type AnyConstructor = (
 );
 
 export interface DeepEqualFunc {
-    (a: any, b: any, memo?: Map<any, boolean>): boolean;
+    (a: any, b: any): boolean;
 }
 
-export type MapType = Map<AnyConstructor, DeepEqualFunc>;
+export interface TypeCloneFunc {
+    (a: any): any;
+}
+
+export type MapType = Map<
+    AnyConstructor,
+    DeepEqualFunc|TypeCloneFunc
+>;
 
 export type ConstructorCheckOptions = {
     constructor: any,

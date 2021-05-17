@@ -131,8 +131,6 @@ describe('Arguments', function () {
         ].forEach(x => {
 
             const isEqual = deepEqual(state1, { x });
-            console.log(x, isEqual);
-
             expect(isEqual).to.be.false;
         })
     });
