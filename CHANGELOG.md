@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/riot-tools/state-utils/compare/v1.1.0...v1.1.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* 🐛 build iife ([e266964](https://github.com/riot-tools/state-utils/commit/e266964e9e72fa42163c35ec6e42954625d6d647))
+
 # [1.1.0](https://github.com/riot-tools/state-utils/compare/v1.0.0...v1.1.0) (2021-05-17)
 
 
