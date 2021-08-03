@@ -29,6 +29,13 @@ export default [
                 inlineDynamicImports: true,
             },
             {
+                name: 'RiotStateUtils',
+                file: pkg.browser,
+                format: 'iife',
+                sourcemap: true,
+                inlineDynamicImports: true,
+            },
+            {
                 file: pkg.module,
                 format: 'es',
                 sourcemap: true
