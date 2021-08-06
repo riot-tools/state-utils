@@ -22,18 +22,11 @@ export default [
         ],
         output: [
             {
-                name: 'RiotStateUtils',
-                file: pkg.main,
-                format: 'umd',
-                sourcemap: true,
-                inlineDynamicImports: true,
-            },
-            {
-                name: 'RiotStateUtils',
-                file: pkg.browser,
+                name: 'RiotMeiosis',
+                file: 'dist/iife.js',
                 format: 'iife',
                 sourcemap: true,
-                inlineDynamicImports: true,
+                inlineDynamicImports: true
             },
             {
                 file: pkg.module,

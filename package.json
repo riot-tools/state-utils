@@ -3,17 +3,17 @@
     "version": "1.1.1",
     "description": "State utils used across riot-tool projects",
     "license": "MIT",
-    "main": "dist/umd.js",
-    "module": "dist/es.js",
-    "browser": "dist/iife.js",
-    "jsnext:main": "dist/es.js",
+    "main": "dist/index.es.js",
+    "module": "dist/index.es.js",
+    "jsnext:main": "dist/index.es.js",
     "types": "dist/index.d.ts",
+    "type": "module",
     "authors": [
         "Danilo Alonso <damusix@gmail.com>"
     ],
     "scripts": {
         "start": "npm run test --recursive --watch",
-        "test": "mocha -r ./tests/_setup -r ts-node/register 'tests/**/*.ts'",
+        "test": "mocha -r ./tests/_setup.js -r ts-node/register 'tests/**/*.ts'",
         "build": "rollup -c"
     },
     "repository": {

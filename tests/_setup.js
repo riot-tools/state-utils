@@ -1,5 +1,4 @@
-const { JSDOM } = require('jsdom');
-
+import { JSDOM } from 'jsdom';
 
 const { window, document } = new JSDOM('');
 
