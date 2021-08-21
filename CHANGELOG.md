@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/riot-tools/state-utils/compare/v1.1.2...v1.1.3) (2021-08-21)
+
+
+### Bug Fixes
+
+* 🐛 lib config ([1799034](https://github.com/riot-tools/state-utils/commit/1799034ec621e014471665f0ed179ef9821f7757))
+
 ## [1.1.2](https://github.com/riot-tools/state-utils/compare/v1.1.1...v1.1.2) (2021-08-06)
 
 
