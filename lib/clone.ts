@@ -47,7 +47,11 @@ typeCloneFunc.set(Set, (a) => {
     return copy;
 });
 
-
+/**
+ * Deep clones Objects, Arrays, Maps and Sets
+ * @param original
+ * @returns {any} Cloned value
+ */
 export const clone = (original: any): any => {
 
     // Primatives do not have issues with hoisting

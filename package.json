@@ -3,19 +3,22 @@
     "version": "1.1.2",
     "description": "State utils used across riot-tool projects",
     "license": "MIT",
-    "main": "dist/index.es.js",
-    "module": "dist/index.es.js",
-    "jsnext:main": "dist/index.es.js",
-    "types": "dist/index.d.ts",
-    "type": "module",
-    "authors": [
-        "Danilo Alonso <damusix@gmail.com>"
+    "main": "dist/umd.js",
+    "module": "dist/es.js",
+    "browser": "dist/iife.js",
+    "typings": "dist/types/index.d.ts",
+    "files": [
+        "dist",
+        "readme"
     ],
     "scripts": {
         "start": "npm run test --recursive --watch",
-        "test": "mocha -r ./tests/_setup.js -r ts-node/register 'tests/**/*.ts'",
+        "test": "mocha -r esm -r ./tests/_setup.js -r ts-node/register 'tests/**/*.ts'",
         "build": "rollup -c"
     },
+    "authors": [
+        "Danilo Alonso <damusix@gmail.com>"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/riot-tools/state-utils.git"
@@ -38,10 +41,10 @@
         "@babel/polyfill": "^7.12.1",
         "@babel/preset-env": "^7.14.2",
         "@babel/register": "^7.13.16",
-        "@types/mocha": "^8.2.2",
-        "@types/node": "^14.14.31",
         "@semantic-release/changelog": "^5.0.1",
         "@semantic-release/git": "^9.0.0",
+        "@types/mocha": "^8.2.2",
+        "@types/node": "^14.14.31",
         "benchmark": "^2.1.4",
         "chai": "^4.3.4",
         "fast-check": "^2.14.0",
@@ -94,5 +97,8 @@
             "@semantic-release/npm",
             "@semantic-release/git"
         ]
+    },
+    "dependencies": {
+        "esm": "^3.2.25"
     }
 }
