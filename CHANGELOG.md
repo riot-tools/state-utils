@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/riot-tools/state-utils/compare/v1.1.3...v1.2.0) (2021-09-06)
+
+
+### Features
+
+* 🎸 merge ([1d89ac4](https://github.com/riot-tools/state-utils/commit/1d89ac4bd38f9f39efffc6f21db04823e2fcc096))
+
 ## [1.1.3](https://github.com/riot-tools/state-utils/compare/v1.1.2...v1.1.3) (2021-08-21)
 
 
