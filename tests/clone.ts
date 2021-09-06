@@ -17,7 +17,7 @@ const stub = {
 describe('Clones', function () {
 
 
-    it('should deepEqual any kind of value', function () {
+    it('should clone any kind of value', function () {
 
         const predicate = (a) => {
             clone(a);

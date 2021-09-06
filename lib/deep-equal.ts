@@ -188,5 +188,3 @@ export const deepEqual = (change: any, current: any): boolean => {
 
     return typedeepEqualFunc(change, current);
 };
-
-export default deepEqual;

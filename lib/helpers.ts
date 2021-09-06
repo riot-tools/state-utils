@@ -14,6 +14,17 @@ export const isNonIterable = (val: any): boolean => (
 );
 
 /**
+ * Checks if value is a type that does not
+ * have a constructor
+ * @param val
+ * @returns {boolean}
+ */
+export const isNonObject = (val: any): boolean => (
+    val === null ||
+    val === undefined
+);
+
+/**
  * Checks if either value is non iterable
  * @param value
  * @param compare

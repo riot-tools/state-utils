@@ -69,6 +69,3 @@ export const clone = (original: any): any => {
 
     return (cloneType as TypeCloneFunc)(original);
 };
-
-
-export default clone;

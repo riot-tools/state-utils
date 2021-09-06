@@ -22,6 +22,16 @@ export type MapType = Map<
     DeepEqualFunc|TypeCloneFunc
 >;
 
+
+export interface TypeMergeFunc {
+    (a: any, b: any, opts?: any): any;
+}
+
+export type MapTypeMerge = Map<
+    AnyConstructor,
+    TypeMergeFunc
+>
+
 export type ConstructorCheckOptions = {
     constructor: any,
     treatAs?: AnyConstructor,
