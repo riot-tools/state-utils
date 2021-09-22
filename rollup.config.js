@@ -21,7 +21,7 @@ export default [
         output: [
             {
                 name: libraryName,
-                file: pkg.browser,
+                file: pkg.cdn,
                 format: 'iife',
                 sourcemap: true,
                 inlineDynamicImports: true
