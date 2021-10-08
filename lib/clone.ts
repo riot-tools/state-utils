@@ -1,18 +1,24 @@
-import { MapType, TypeCloneFunc } from './types';
+import {
+    TypeCloneFunc
+} from './types';
+
 import {
     isNonIterable,
     _nextTick
 } from './helpers';
 
-const typeCloneFunc: MapType = new Map();
+import { AnyConstructor } from '.';
 
-typeCloneFunc.set(Array, (a) => a.map((v: any) => clone(v)));
+const typeCloneFunc: Map<AnyConstructor, TypeCloneFunc<any>> = new Map();
 
-typeCloneFunc.set(Object, (a: Object) => {
+typeCloneFunc.set(Array, <T>(a: Array<T>): Array<T> => a.map((v) => clone(v)));
 
-    const copy: object = new Object;
+typeCloneFunc.set(Object, <T extends object>(a: T) => {
 
-    let key: keyof Object;
+    const copy: Partial<T> = {};
+
+    let key: keyof T;
+
     for (key in a) {
 
         copy[key] = clone(a[key]);
@@ -21,7 +27,7 @@ typeCloneFunc.set(Object, (a: Object) => {
     return copy;
 });
 
-typeCloneFunc.set(Map, (a: Map<any, any>) => {
+typeCloneFunc.set(Map, <K, V>(a: Map<K, V>): Map<K, V> => {
 
     const copy = new Map;
 
@@ -34,7 +40,7 @@ typeCloneFunc.set(Map, (a: Map<any, any>) => {
     return copy;
 });
 
-typeCloneFunc.set(Set, (a) => {
+typeCloneFunc.set(Set, <T>(a: Set<T>) => {
 
     const copy = new Set;
 
@@ -52,14 +58,14 @@ typeCloneFunc.set(Set, (a) => {
  * @param original
  * @returns {any} Cloned value
  */
-export const clone = (original: any): any => {
+export const clone = <T>(original: T): T => {
 
     // Primatives do not have issues with hoisting
     if (isNonIterable(original) || (original instanceof Date)) {
         return original;
     }
 
-    const cloneType = typeCloneFunc.get(original.constructor);
+    const cloneType = typeCloneFunc.get(original.constructor as AnyConstructor);
 
     // Warn about using specific types that are not supported
     if (!cloneType) {
@@ -67,5 +73,5 @@ export const clone = (original: any): any => {
         return original;
     }
 
-    return (cloneType as TypeCloneFunc)(original);
+    return cloneType(original);
 };
