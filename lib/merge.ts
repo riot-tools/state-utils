@@ -1,10 +1,11 @@
-import { MapTypeMerge, TypeMergeFunc, TypeCloneFunc } from './types';
+import { MapTypeMerge, TypeMergeFunc } from './types';
 import {
     hasSameConstructor,
     isNonIterable,
     isNonObject,
     _nextTick
 } from './helpers';
+import { AnyConstructor } from '.';
 
 const typeMergeFunc: MapTypeMerge = new Map();
 
@@ -25,7 +26,7 @@ internals.mergeArrays = (current: Array<any>, incoming: Array<any>) => {
 };
 
 
-internals.mergeSets = (current: Set<any>, incoming: Set<any>) => {
+internals.mergeSets = <T>(current: Set<T>, incoming: Set<T>) => {
 
     for (const value of incoming) {
 
@@ -39,7 +40,7 @@ internals.mergeSets = (current: Set<any>, incoming: Set<any>) => {
 };
 
 
-internals.overwriteArrays = (current: Array<any>, incoming: Array<any>) => {
+internals.overwriteArrays = <T>(current: Array<T>, incoming: Array<T>) => {
 
     current.length = 0;
 
@@ -51,7 +52,7 @@ internals.overwriteArrays = (current: Array<any>, incoming: Array<any>) => {
 };
 
 
-internals.overwriteSets = (current: Set<any>, incoming: Set<any>) => {
+internals.overwriteSets = <T>(current: Set<T>, incoming: Set<T>) => {
 
     current.clear();
 
@@ -64,7 +65,7 @@ internals.overwriteSets = (current: Set<any>, incoming: Set<any>) => {
 };
 
 
-typeMergeFunc.set(Array, (current: Array<any>, incoming: Array<any>, options?: MergeOptions) => {
+typeMergeFunc.set(Array, <T>(current: Array<T>, incoming: Array<T>, options?: MergeOptions) => {
 
     if (options.mergeArrays) {
 
@@ -74,7 +75,7 @@ typeMergeFunc.set(Array, (current: Array<any>, incoming: Array<any>, options?: M
     return internals.overwriteArrays(current, incoming);
 });
 
-typeMergeFunc.set(Set, (current: Set<any>, incoming: Set<any>, options?: MergeOptions) => {
+typeMergeFunc.set(Set, <T>(current: Set<T>, incoming: Set<T>, options?: MergeOptions) => {
 
     if (options.mergeSets) {
 
@@ -84,7 +85,13 @@ typeMergeFunc.set(Set, (current: Set<any>, incoming: Set<any>, options?: MergeOp
     return internals.overwriteSets(current, incoming);
 });
 
-typeMergeFunc.set(Object, (current: object, incoming: object, options?: MergeOptions) => {
+typeMergeFunc.set(
+    Object,
+    <C = {}, I = {}>(
+        current: C,
+        incoming: I,
+        options?: MergeOptions
+    ) => {
 
     let key: string;
 
@@ -105,10 +112,10 @@ typeMergeFunc.set(Object, (current: object, incoming: object, options?: MergeOpt
         current[key] = incoming[key];
     }
 
-    return current;
+    return current as C & I;
 });
 
-typeMergeFunc.set(Map, (current: Map<any, any>, incoming: Map<any, any>, options?: MergeOptions) => {
+typeMergeFunc.set(Map, <K, V>(current: Map<K, V>, incoming: Map<K, V>, options?: MergeOptions) => {
 
     for (const [key, bValue] of incoming.entries()) {
 
@@ -143,9 +150,8 @@ typeMergeFunc.set(Map, (current: Map<any, any>, incoming: Map<any, any>, options
  * Deep merge Objects, Arrays, Maps and Sets
  * @param current
  * @param incoming
- * @returns {any} Merged value
  */
-export const merge = (current: any, incoming: any, options: MergeOptions = {}): any => {
+export const merge = <C = any, I = any>(current: C, incoming: I, options: MergeOptions = {}) => {
 
     options = Object.assign({
         mergeArrays: true,
@@ -159,7 +165,7 @@ export const merge = (current: any, incoming: any, options: MergeOptions = {}): 
 
     if (hasSameConstructor(incoming, current)) {
 
-        const mergeType = typeMergeFunc.get(current.constructor);
+        const mergeType = typeMergeFunc.get(current.constructor as AnyConstructor);
 
         // Warn about using specific types that are not supported
         if (!mergeType) {
@@ -167,7 +173,7 @@ export const merge = (current: any, incoming: any, options: MergeOptions = {}): 
             return current;
         }
 
-        return (mergeType as TypeMergeFunc)(current, incoming, options);
+        return mergeType(current, incoming, options);
     }
 
     return incoming;

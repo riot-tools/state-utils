@@ -13,13 +13,13 @@ export interface DeepEqualFunc {
     (a: any, b: any): boolean;
 }
 
-export interface TypeCloneFunc {
-    (a: any): any;
+export interface TypeCloneFunc<T> {
+    (a: T): T;
 }
 
 export type MapType = Map<
     AnyConstructor,
-    DeepEqualFunc|TypeCloneFunc
+    DeepEqualFunc
 >;
 
 
