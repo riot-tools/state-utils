@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/riot-tools/state-utils/compare/v1.2.1...v1.2.2) (2021-10-08)
+
+
+### Bug Fixes
+
+* 🐛 add generics to types ([9df7abf](https://github.com/riot-tools/state-utils/commit/9df7abf78e3dc64ec76633553a9ce25c307bd810))
+
 ## [1.2.1-next.1](https://github.com/riot-tools/state-utils/compare/v1.2.0...v1.2.1-next.1) (2021-10-08)
 
 
