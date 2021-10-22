@@ -1,3 +1,11 @@
+## [1.2.2-next.1](https://github.com/riot-tools/state-utils/compare/v1.2.1...v1.2.2-next.1) (2021-10-22)
+
+
+### Bug Fixes
+
+* 🐛 add generics to types ([9df7abf](https://github.com/riot-tools/state-utils/commit/9df7abf78e3dc64ec76633553a9ce25c307bd810))
+* 🐛 isSameLength ([0825a87](https://github.com/riot-tools/state-utils/commit/0825a874422fa80ad044816063219b8870e3f820))
+
 ## [1.2.1-next.1](https://github.com/riot-tools/state-utils/compare/v1.2.0...v1.2.1-next.1) (2021-10-08)
 
 
