@@ -52,7 +52,7 @@ export const hasSameConstructor = (value: any, compare: any): boolean => (
  * @returns {boolean}
  */
 export const isSameLength = (a: any, b: any): boolean => (
-    a.length === b.length ||
+    a.length === b.length &&
     a.size === b.size
 );
 

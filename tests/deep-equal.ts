@@ -248,6 +248,32 @@ describe('Objects and Arrays', function () {
         }
     });
 
+
+    it('should deepEqual empty array', () => {
+
+        expect(deepEqual(
+            { t: [1] },
+            { t: [] }
+        )).to.be.false
+
+
+        expect(deepEqual(
+            { t: [] },
+            { t: [1] }
+        )).to.be.false
+
+        expect(deepEqual(
+            [1],
+            []
+        )).to.be.false
+
+        expect(deepEqual(
+            [],
+            [2]
+        )).to.be.false
+
+    });
+
 });
 
 
