@@ -146,17 +146,24 @@ typeMergeFunc.set(Map, <K, V>(current: Map<K, V>, incoming: Map<K, V>, options?:
     return current;
 });
 
+interface Merge {
+
+    <C = any, I = any>(current: C, incoming: I, options?: MergeOptions): C & I
+    _defaults: MergeOptions;
+    setDefaults(options: MergeOptions): void
+}
+
 /**
  * Deep merge Objects, Arrays, Maps and Sets
  * @param current
  * @param incoming
  */
-export const merge = <C = any, I = any>(current: C, incoming: I, options: MergeOptions = {}) => {
+export const merge: Merge = (current, incoming, options = {}) => {
 
-    options = Object.assign({
-        mergeArrays: true,
-        mergeSets: true
-    }, options);
+    options = {
+        ...merge._defaults,
+        ...options
+    };
 
     // Primatives do not have issues with hoisting
     if (isNonIterable(incoming) || (incoming instanceof Date)) {
@@ -178,5 +185,13 @@ export const merge = <C = any, I = any>(current: C, incoming: I, options: MergeO
 
     return incoming;
 };
+
+merge._defaults = {
+
+    mergeArrays: true,
+    mergeSets: true
+};
+
+merge.setDefaults = (options) => Object.assign(merge._defaults, options);
 
 

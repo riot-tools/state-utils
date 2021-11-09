@@ -72,7 +72,7 @@ describe('Merges', function () {
 
     it('should merge maps', () => {
 
-        const val: Map<any, any> = merge(stub.a.map, stub.b.map);
+        const val = merge(stub.a.map, stub.b.map);
 
         const keys = [...val.keys()];
 
@@ -94,7 +94,7 @@ describe('Merges', function () {
             ['b', { tats: true }],
         ]);
 
-        const val: Map<any, any> = merge(mapA, mapB);
+        const val = merge(mapA, mapB);
 
 
         expect(val.get('a')).to.include({
@@ -110,7 +110,7 @@ describe('Merges', function () {
 
     it('should merge sets', () => {
 
-        const val: Set<any> = merge(stub.a.set, stub.b.set);
+        const val = merge(stub.a.set, stub.b.set);
 
         const values = [...val];
 
