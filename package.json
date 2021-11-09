@@ -1,6 +1,6 @@
 {
     "name": "@riot-tools/state-utils",
-    "version": "1.2.3",
+    "version": "1.3.0",
     "description": "State utils used across riot-tool projects",
     "license": "MIT",
     "main": "dist/umd.js",
